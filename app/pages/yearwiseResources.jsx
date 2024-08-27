@@ -7,6 +7,8 @@ import YearCard from "../../components/YearCard";
 import GradeBoundaryCard from '../../components/GradeBoundaryCard';
 import VariantCard from '../../components/VariantCard';
 import MostSolvedCard from '../../components/MostSolvedCard';
+import { Link } from 'expo-router';
+
 
 const data = [
   { exam: "Edexcel - 2018", subject: "Chemistry", highestScore: "87%", solvedBy: "2.5k" },
@@ -17,6 +19,15 @@ const data = [
   { exam: "Edexcel - 2019", subject: "Chemistry", highestScore: "87%", solvedBy: "1.7k" },
 ];
 
+const variantData = {
+  title: "Chemistry - 2022",
+  papers: [
+    { name: "Paper 1", selected: true, score: 85 },
+    { name: "Paper 2", selected: false, score: 92 },
+    { name: "Paper 3", selected: true, score: 88 }
+  ],
+  onViewGradeBoundaryPress: () => console.log("View Grade Boundary Pressed"),
+};
 
 
 
@@ -28,6 +39,8 @@ const YearwiseResources = () => {
       </View>
       
       <ScrollView contentContainerStyle={styles.cardContainer}>
+      
+        
         <YearCard
           year="2020"
           highestScore="87%"
@@ -76,34 +89,22 @@ const YearwiseResources = () => {
           onViewBothPress={() => console.log('View Both pressed')}
           onViewNotesPress={() => console.log('View Notes pressed')}
         />
+        
+        
+       
         <GradeBoundaryCard />
-        <VariantCard
-  title="Variant 1 (11, 21, 31, 41)"
-  papers={[
-    { name: "Jan - Feb 2020 - Paper 1", selected: true, score: 78 },
-    { name: "Jan - Feb 2020 - Paper 2", selected: false },
-    { name: "Jan - Feb 2020 - Paper 3", selected: false },
-    { name: "Jan - Feb 2020 - Paper 4 (alt. to practicals)", selected: false },
-  ]}
-  onViewGradeBoundaryPress={() => console.log('View Grade Boundary pressed')}
-/>
+       
+<MostSolvedCard data={data} /> 
 <VariantCard
-  title="Variant 2 (12, 22, 32, 42)"
-  papers={[
-    { name: "Jan - Feb 2020 - Paper 1", selected: true, score: 78 },
-    { name: "Jan - Feb 2020 - Paper 2", selected: false },
-    { name: "Jan - Feb 2020 - Paper 3", selected: false },
-    { name: "Jan - Feb 2020 - Paper 4 (alt. to practicals)", selected: false },
-  ]}
-  onViewGradeBoundaryPress={() => console.log('View Grade Boundary pressed')}
-/>
-<MostSolvedCard data={data} />
+        title={variantData.title}
+        papers={variantData.papers}
+        onViewGradeBoundaryPress={variantData.onViewGradeBoundaryPress}
+      />
 
-
-       
-       
-       
       </ScrollView>
+      <Link href="/pages/Dashboard" style={styles.navButton}>
+  <Text style={styles.navButtonText}>Dashboard</Text>
+</Link>
     </SafeAreaView>
   );
 };
@@ -111,7 +112,7 @@ const YearwiseResources = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 10,
     backgroundColor: "#1e1e1e",
   },
   titleContainer: {
@@ -131,6 +132,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     flexDirection: 'row',      // Arrange cards in a row
     flexWrap: 'wrap', 
+    justifyContent: 'flex-start',
 
    
   },
@@ -144,8 +146,8 @@ const styles = StyleSheet.create({
     marginBottom: 10, 
   },
   
+  
 });
 
 export default YearwiseResources;
-
 

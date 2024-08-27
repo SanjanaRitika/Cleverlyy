@@ -25,7 +25,7 @@ const MostSolvedCard = ({ data }) => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#000000',
-    width: '45%',
+    width: '25%',
     padding: 15,
     borderRadius: 10,
     marginBottom: 20,

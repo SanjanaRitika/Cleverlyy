@@ -10,6 +10,8 @@ export default function RootLayout() {
       <Stack.Screen name="pages/SelectYearGroup" />
       <Stack.Screen name="pages/PlanSelectionScreen" />
       <Stack.Screen name="pages/yearwiseResources" />
+      <Stack.Screen name="pages/Dashboard" />
+      <Stack.Screen name="pages/Papers" />
     
     </Stack>
   );
